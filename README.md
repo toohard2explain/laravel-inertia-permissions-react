@@ -1,14 +1,13 @@
-# Implementing Spatie's Permissions package into Inertia Laravel project.
+# Implementing Spatie's Permissions package into Inertia Laravel project (React).
 
-Easy to use package to implement Spatie's Permissions package into Inertia Laravel project. The package also includes 
-a Vue components to display and edit the roles of the current user and to manage roles and permissions.
+Easy to use package to implement Spatie's Permissions package into Inertia Laravel project.
 
 ## Installation
 
 You can install the package via composer:
 
 ```bash
-composer require wijzijnweb/laravel-inertia-permissions
+composer require toohard2explain/laravel-inertia-permissions-react
 ```
 
 You can publish and run the migrations with
@@ -18,11 +17,11 @@ php artisan migrate
 ```
 
 Add the following to your vite.config.js file
-    
+
 ```js
 resolve: {
     alias: {
-        '@laravel-inertia-permissions': 'vendor/wijzijnweb/laravel-inertia-permissions/resources/js'
+        '@laravel-inertia-permissions-react': 'vendor/toohard2explain/laravel-inertia-permissions-react/resources/js'
     }
 }
 ```
@@ -32,7 +31,7 @@ Optionally, you can add the following to your jsconfig.json file:
 {
     "compilerOptions": {
         "paths": {
-            "@laravel-inertia-permissions/*": ["./vendor/wijzijnweb/laravel-inertia-permissions/resources/js/*"]
+            "@laravel-inertia-permissions-react/*": ["./vendor/toohard2explain/laravel-inertia-permissions-react/resources/js/*"]
         }
     }
 }
@@ -49,11 +48,11 @@ Optionally, you can add the following to your jsconfig.json file:
 
 ## Usage
 
-Permissions and Roles are automatically Shared with Inertia. 
+Permissions and Roles are automatically Shared with Inertia.
 You can access them in your Vue components like this:
 
 ```js
-import usePermissions from '@laravel-inertia-permissions/Uses/usePermissions.js';
+import usePermissions from '@laravel-inertia-permissions-react/hooks/usePermissions.js';
 
 const { can, is } = usePermissions()
 
@@ -66,52 +65,6 @@ if (is('writer')) {
 }
 ```
 
-```js
-import FormRoles from '@laravel-inertia-permissions/Components/FormRoles.vue';
-import FormPermissions from '@laravel-inertia-permissions/Components/FormPermissions.vue';
-
-<FormRoles v-model="form.roles" />
-<FormPermissions v-model="form.permissions" />
-```
-
-You can also use the directives to hide specific elements. To that you need to register the directives in your app.js file:
-```js
-import {
-    hasRoleDirective,
-    hasPermissionDirective
-} from '@laravel-inertia-permissions/Directives/permissionDirective.js';
-
-createApp({render: () => h(App, props)})
-    .directive('hasRole', hasRoleDirective)
-    .directive('hasPermission', hasPermissionDirective)
-```
-
-After that you can use the directives in your Vue components:
-You can use the pipe symbol and the ampersand to check for multiple roles or permissions:
-
-```js
- <MyComponent v-has-role="'admin|writer'" />
- <MyComponent v-has-permission="'edit articles&delete articles'" />
-```
-
-There is also a component to prevent the user from seeing something with a feedback message:
-
-```js
-import HasPermission from '@laravel-inertia-permissions/Components/HasPermission.vue';
-
-<HasPermission permission="edit articles" role="writer">
-    <p>You can edit articles</p>
-</HasPermission>
-```
-
-
-## Changelog
-
-Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
-
-## Credits
-
-- [Wij zijn WEB](https://github.com/wijzijnweb)
 
 ## License
 
